@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -20,8 +21,8 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0"
   },
-  "engines":{
-    "node":"9.2.0"
+  "engines": {
+    "node": "9.2.0"
   },
   "keywords": [
     "example",
