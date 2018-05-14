@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const Schedule = require('../models/schedule');
 const axios = require('axios');
 const jwtService = require('../services/jwtService');
 const FACEBOOK_AUTH_URL = require('../constants/apis').FACEBOOK_AUTH_URL;
@@ -37,12 +38,17 @@ router.post('/',function(req, res, next) {
                 });
             } 
             else {
-                const userUrl = userGeneratorSrv.getUrl(name,email);
-                res.json({
-                    token: jwtService.encodeToken(user),
-                    email,
-                    name,
-                    picture
+              
+                Schedule.findOne({user_id:user._id}).then((scheduleObj,err) => {
+                    const schedule = err || !scheduleObj ? null : scheduleObj;
+                    res.json({
+                        token: jwtService.encodeToken(user),
+                        email,
+                        name,
+                        picture,
+                        schedule,
+                        userUrl:user.userUrl
+                    }); 
                 });
             }
         });
