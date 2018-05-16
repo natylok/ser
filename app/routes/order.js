@@ -7,8 +7,8 @@ const ValidatorSrv = require('../services/validatorSrv');
 router.post('/',(req,res) => {
     const userUrl = req.body.userUrl;
     User.findOne({userUrl}).then((userData,err) => {
-        ValidatorSrv.validateOrder(req.body,userData._id).then((results) => {
-            const user_id = userData._id;
+        ValidatorSrv.validateOrder(req.body,userData.id).then((results) => {
+            const user_id = userData.id;
             if(err){
                 res.status(400).send({reason:err});
             }
