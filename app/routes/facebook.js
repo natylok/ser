@@ -23,7 +23,9 @@ router.post('/',function(req, res, next) {
                     picture:picture.data,
                     userUrl
                 });
+                console.log("try to logged in");
                 user.save().then((data,err) => {
+                    console.log("successed logged in");
                     if(err){
                         return next(err);
                     }
@@ -37,9 +39,10 @@ router.post('/',function(req, res, next) {
                     });
                 });
             } 
-            else {
-              
+            else {          
+                console.log("try to logged in");    
                 Schedule.findOne({user_id:user._id}).then((scheduleObj,err) => {
+                    console.log("successed logged in");
                     const schedule = err || !scheduleObj ? null : scheduleObj;
                     res.json({
                         token: jwtService.encodeToken(user),
