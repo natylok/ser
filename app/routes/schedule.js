@@ -5,6 +5,7 @@ const User = require('../models/user');
 const Order = require('../models/order');
 const moment = require('moment'); 
 const ValidatorSrv = require('../services/validatorSrv');
+
 authMW = require('../config/authByToken').authByToken;
 router.post('/',authMW,(req,res) => {
     const schedule = new Schedule({
@@ -33,7 +34,7 @@ router.put('/',authMW,(req,res) => {
                     res.status(400).send({error:'Could not update user schedule'});
                 }
                 else{
-                    res.send(updatedObj);
+                     res.send(updatedObj);
                 }
             })
         }

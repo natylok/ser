@@ -7,7 +7,9 @@ const FACEBOOK_AUTH_URL = require('../constants/apis').FACEBOOK_AUTH_URL;
 const router = express.Router();
 const userGeneratorSrv = require('../services/userUrlGeneratorSrv');
 router.post('/',function(req, res, next) {
-    axios.get(FACEBOOK_AUTH_URL.replace('<TOKEN>',req.body.token)).then((response) => {
+    // axios.get(FACEBOOK_AUTH_URL.replace('<TOKEN>',req.body.token)).then((response) => {
+        let response = {};
+        response.data = {"id":"10211691433104431","name":"Nati Levy","email":"natybest@gmail.com","picture":{"data":{"height":200,"is_silhouette":false,"url":"https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=10211691433104431&height=200&width=200&ext=1543254148&hash=AeRrNkNwW3lCe3a1","width":200}}};
         const {name,email,picture} = response.data;
         const facebook_id = response.data.id;
         User.findOne({facebook_id}).then((user, err) => {
@@ -55,8 +57,8 @@ router.post('/',function(req, res, next) {
                 });
             }
         });
-    }).catch((err) => {
-      return next(err);
-    });
+    // }).catch((err) => {
+    //   return next(err);
+    // });
   })
 module.exports = router;

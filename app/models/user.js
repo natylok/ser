@@ -22,6 +22,9 @@ var userSchema = new mongoose.Schema({
   userUrl:{
     type:String,
     required:true
+  },
+  notiflicationToken:{
+    type:String
   }
 });
 
